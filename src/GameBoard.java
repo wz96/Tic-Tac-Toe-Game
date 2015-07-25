@@ -14,6 +14,7 @@ public class GameBoard{
 	
 	private boolean started;
 	private boolean gameOver;
+	private boolean draw;
 	
 	private Tile[] TileArray;
 	
@@ -37,6 +38,7 @@ public class GameBoard{
 		TileArray[8] = new Tile("br");
 		
 		gameOver = false;
+		draw = false;
 	}
 	
 	public GameBoard(Player player1, Player player2)
@@ -136,6 +138,15 @@ public class GameBoard{
 				gameOver = true;
 			}
 		}
+		
+		//all are filled
+		if(TileArray[0].getOccupiedPlayer()!=null && TileArray[1].getOccupiedPlayer()!=null && TileArray[2].getOccupiedPlayer() !=null
+				&& TileArray[3].getOccupiedPlayer()!=null && TileArray[4].getOccupiedPlayer()!=null && TileArray[5].getOccupiedPlayer()!=null
+				&& TileArray[6].getOccupiedPlayer()!=null && TileArray[7].getOccupiedPlayer()!=null && TileArray[8].getOccupiedPlayer()!=null)
+		{
+			gameOver = true;
+			draw = true;
+		}
 	}
 	
 	public void setPlayerNames(String n1, String n2)
@@ -183,6 +194,11 @@ public class GameBoard{
 	public Player getCurrentPlayer()
 	{
 		return currentPlayer;
+	}
+	
+	public boolean isDraw()
+	{
+		return draw;
 	}
 	
 	public Player getNextPlayer()

@@ -101,15 +101,24 @@ public class GameScreen extends JFrame implements ActionListener {
 		//if game has started
 		if(currentGame.isGameOver())
 		{
-			for(int i = 0; i<buttonList.length; i++)
+			if(!currentGame.isDraw())
 			{
-				buttonList[i].setEnabled(false);
-			}
+				for(int i = 0; i<buttonList.length; i++)
+				{
+					buttonList[i].setEnabled(false);
+				}
 			
-			currentGame.getCurrentPlayer().increaseWins();
-			JLabel winner = new JLabel("Winner is " + currentGame.getCurrentPlayer().getName() + "!");
-			winner.setHorizontalAlignment(JLabel.CENTER);
-			this.titlePanel.add(winner,BorderLayout.SOUTH);
+				currentGame.getCurrentPlayer().increaseWins();
+				JLabel winner = new JLabel("Winner is " + currentGame.getCurrentPlayer().getName() + "!");
+				winner.setHorizontalAlignment(JLabel.CENTER);
+				this.titlePanel.add(winner,BorderLayout.SOUTH);
+			}
+			else
+			{
+				JLabel winner = new JLabel("Draw!");
+				winner.setHorizontalAlignment(JLabel.CENTER);
+				this.titlePanel.add(winner,BorderLayout.SOUTH);
+			}
 		}
 		else
 		{
@@ -124,6 +133,8 @@ public class GameScreen extends JFrame implements ActionListener {
 	
 	public void setNextGame()
 	{
+		this.setLayout(new Borderla);
+		
 		this.setPreferredSize(new Dimension(400,400));
 		this.setLayout(new BorderLayout());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -175,9 +186,6 @@ public class GameScreen extends JFrame implements ActionListener {
 			});
 			southPanel.add(nextMove, BorderLayout.CENTER);
 		}
-		
-		
-		
 	}
 	
 	public void setUpButtons()
